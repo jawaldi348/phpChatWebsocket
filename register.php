@@ -20,6 +20,10 @@ if (isset($_POST["register"])) {
     $user_object->setUserStatus('Disabled');
     $user_object->setUserCreatedOn(date('Y-m-d H:i:s'));
     $user_object->setUserVerificationCode(md5(uniqid()));
+    $user_data = $user_object->get_user_data_by_email();
+    if (is_array($user_data) && count($user_data) > 0) {
+        $error = 'This Email Already Register';
+    }
 }
 ?>
 <!DOCTYPE html>
