@@ -23,6 +23,12 @@ if (isset($_POST["register"])) {
     $user_data = $user_object->get_user_data_by_email();
     if (is_array($user_data) && count($user_data) > 0) {
         $error = 'This Email Already Register';
+    } else {
+        if ($user_object->save_data()) {
+            $success_message = 'Registeration Completed';
+        } else {
+            $error = 'Something went wrong try again';
+        }
     }
 }
 ?>

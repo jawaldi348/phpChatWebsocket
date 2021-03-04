@@ -138,4 +138,22 @@ class ChatUser
         }
         return $user_data;
     }
+
+    function save_data()
+    {
+        $query = "INSERT INTO chat_user_table (user_name, user_email, user_password, user_profile, user_status, user_created_on, user_verification_code) VALUES (:user_name, :user_email, :user_password, :user_profile, :user_status, :user_created_on, :user_verification_code)";
+        $statement = $this->connect->prepare($query);
+        $statement->bindParam(':user_name', $this->user_name);
+        $statement->bindParam(':user_email', $this->user_email);
+        $statement->bindParam(':user_password', $this->user_password);
+        $statement->bindParam(':user_profile', $this->user_profile);
+        $statement->bindParam(':user_status', $this->user_status);
+        $statement->bindParam(':user_created_on', $this->user_created_on);
+        $statement->bindParam(':user_verification_code', $this->user_verification_code);
+        if ($statement->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
