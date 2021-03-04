@@ -8,6 +8,18 @@ if (isset($_POST["register"])) {
     if (isset($_SESSION['user_data'])) {
         header('location:chatroom.php');
     }
+
+    date_default_timezone_set('Asia/Jakarta');
+    require_once('database/ChatUser.php');
+
+    $user_object = new ChatUser;
+    $user_object->setUserName($_POST['user_name']);
+    $user_object->setUserEmail($_POST['user_email']);
+    $user_object->setUserPassword($_POST['user_password']);
+    $user_object->setUserProfile($user_object->make_avatar(strtoupper($_POST['user_name'][0])));
+    $user_object->setUserStatus('Disabled');
+    $user_object->setUserCreatedOn(date('Y-m-d H:i:s'));
+    $user_object->setUserVerificationCode(md5(uniqid()));
 }
 ?>
 <!DOCTYPE html>
