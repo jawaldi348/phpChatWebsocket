@@ -68,6 +68,26 @@ if (isset($_POST["register"])) {
 
         <div class="row justify-content-md-center">
             <div class="col col-md-4 mt-5">
+                <?php
+                if ($error != '') {
+                    echo '
+                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                      ' . $error . '
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    ';
+                }
+
+                if ($success_message != '') {
+                    echo '
+                    <div class="alert alert-success">
+                    ' . $success_message . '
+                    </div>
+                    ';
+                }
+                ?>
                 <div class="card">
                     <div class="card-header">Register</div>
                     <div class="card-body">
