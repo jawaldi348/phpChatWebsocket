@@ -1,3 +1,15 @@
+<?php
+$error = '';
+$success_message = '';
+
+if (isset($_POST["register"])) {
+
+    session_start();
+    if (isset($_SESSION['user_data'])) {
+        header('location:chatroom.php');
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
