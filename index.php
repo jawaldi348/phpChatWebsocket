@@ -22,6 +22,7 @@ if (isset($_POST['login'])) {
                         'name' =>  $user_data['user_name'],
                         'profile' =>  $user_data['user_profile']
                     ];
+                    header('location:chatroom.php');
                 }
             } else {
                 $error = 'Wrong Password';
