@@ -57,7 +57,7 @@ if (isset($_GET['code'])) {
         <div class="row justify-content-md-center">
             <div class="col col-md-4 mt-5">
                 <div class="alert alert-danger">
-                    <h2>Message</h2>
+                    <h2><?php echo $error; ?></h2>
                 </div>
             </div>
         </div>
