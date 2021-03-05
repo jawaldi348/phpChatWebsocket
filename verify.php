@@ -1,3 +1,15 @@
+<?php
+//verify.php
+
+$error = '';
+session_start();
+if (isset($_GET['code'])) {
+    require_once('database/ChatUser.php');
+    $user_object = new ChatUser;
+    $user_object->setUserVerificationCode($_GET['code']);
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
