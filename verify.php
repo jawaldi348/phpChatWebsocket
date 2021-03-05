@@ -7,6 +7,11 @@ if (isset($_GET['code'])) {
     require_once('database/ChatUser.php');
     $user_object = new ChatUser;
     $user_object->setUserVerificationCode($_GET['code']);
+    if ($user_object->is_valid_email_verification_code()) {
+        $user_object->setUserStatus('Enable');
+    } else {
+        $error = 'Something went wrong try again....';
+    }
 }
 ?>
 
