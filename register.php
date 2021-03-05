@@ -32,7 +32,31 @@ if (isset($_POST["register"])) {
         $error = 'This Email Already Register';
     } else {
         if ($user_object->save_data()) {
-            $success_message = 'Registeration Completed';
+            $config['base_url'] = ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == "on") ? "https" : "http");
+            $config['base_url'] .= "://" . $_SERVER['HTTP_HOST'];
+            $config['base_url'] .= str_replace(basename($_SERVER['SCRIPT_NAME']), "", $_SERVER['SCRIPT_NAME']);
+            $base_url = $config['base_url'];
+
+            $mail = new PHPMailer(true);
+            $mail->isSMTP();
+            $mail->Host = 'tls://smtp.gmail.com';
+            $mail->SMTPAuth = true;
+            $mail->Username   = 'email gmail'; // Here enter your SMTP Username
+            $mail->Password   = 'password gmail'; //Here enter your SMTP Password
+            $mail->SMTPSecure = "ssl";
+            $mail->Port = 587;
+            $mail->setFrom('tutorial@pejuangcoding.info', 'Jawal');
+            $mail->addAddress($user_object->getUserEmail());
+            $mail->isHTML(true);
+            $mail->Subject = 'Registration Verification for Chat Application Demo';
+            $mail->Body = '
+            <p>Thank you for registering for Chat Application Demo.</p>
+                <p>This is a verification email, please click the link to verify your email address.</p>
+                <p><a href="' . $base_url . 'verify.php?code=' . $user_object->getUserVerificationCode() . '">Click to Verify</a></p>
+                <p>Thank you...</p>
+            ';
+            $mail->send();
+            $success_message = 'Verification Email sent to ' . $user_object->getUserEmail() . ', so before login first verify your email';
         } else {
             $error = 'Something went wrong try again';
         }
