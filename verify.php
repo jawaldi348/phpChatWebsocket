@@ -10,7 +10,8 @@ if (isset($_GET['code'])) {
     if ($user_object->is_valid_email_verification_code()) {
         $user_object->setUserStatus('Enable');
         if ($user_object->enable_user_account()) {
-            // 
+            $_SESSION['success_message'] = 'Your Email Successfully verify, now you can login into this chat Application';
+            header('location:index.php');
         } else {
             $error = 'Something went wrong try again....';
         }
