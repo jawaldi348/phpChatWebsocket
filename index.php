@@ -17,7 +17,11 @@ if (isset($_POST['login'])) {
                 $user_object->setUserId($user_data['user_id']);
                 $user_object->setUserLoginStatus('Login');
                 if ($user_object->update_user_login_data()) {
-                    // 
+                    $_SESSION['user_data'][$user_data['user_id']] = [
+                        'id' =>  $user_data['user_id'],
+                        'name' =>  $user_data['user_name'],
+                        'profile' =>  $user_data['user_profile']
+                    ];
                 }
             } else {
                 $error = 'Wrong Password';
