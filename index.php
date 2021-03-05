@@ -80,6 +80,13 @@ if (isset($_POST['login'])) {
                     ';
                     unset($_SESSION['success_message']);
                 }
+                if ($error != '') {
+                    echo '
+                    <div class="alert alert-danger">
+                    ' . $error . '
+                    </div>
+                    ';
+                }
                 ?>
                 <div class="card">
                     <div class="card-header">Login</div>
