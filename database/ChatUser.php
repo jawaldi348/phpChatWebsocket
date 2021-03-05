@@ -168,4 +168,16 @@ class ChatUser
             return false;
         }
     }
+    function enable_user_account()
+    {
+        $query = "UPDATE chat_user_table SET user_status = :user_status WHERE user_verification_code = :user_verification_code";
+        $statement = $this->connect->prepare($query);
+        $statement->bindParam(':user_status', $this->user_status);
+        $statement->bindParam(':user_verification_code', $this->user_verification_code);
+        if ($statement->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

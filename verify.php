@@ -9,6 +9,11 @@ if (isset($_GET['code'])) {
     $user_object->setUserVerificationCode($_GET['code']);
     if ($user_object->is_valid_email_verification_code()) {
         $user_object->setUserStatus('Enable');
+        if ($user_object->enable_user_account()) {
+            // 
+        } else {
+            $error = 'Something went wrong try again....';
+        }
     } else {
         $error = 'Something went wrong try again....';
     }
