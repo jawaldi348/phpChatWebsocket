@@ -1,9 +1,3 @@
-<?php
-
-session_start();
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -49,9 +43,32 @@ session_start();
                     unset($_SESSION['success_message']);
                 }
                 ?>
+                <div class="card">
+                    <div class="card-header">Login</div>
+                    <div class="card-body">
+                        <form method="post" id="login_form">
+                            <div class="form-group">
+                                <label>Enter Your Email Address</label>
+                                <input type="text" name="user_email" id="user_email" class="form-control" data-parsley-type="email" required />
+                            </div>
+                            <div class="form-group">
+                                <label>Enter Your Password</label>
+                                <input type="password" name="user_password" id="user_password" class="form-control" required />
+                            </div>
+                            <div class="form-group text-center">
+                                <input type="submit" name="login" id="login" class="btn btn-primary" value="Login" />
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </body>
 
 </html>
+<script>
+    $(document).ready(function() {
+        $('#login_form').parsley();
+    });
+</script>
