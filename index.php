@@ -16,6 +16,9 @@ if (isset($_POST['login'])) {
             if ($user_data['user_password'] == $_POST['user_password']) {
                 $user_object->setUserId($user_data['user_id']);
                 $user_object->setUserLoginStatus('Login');
+                if ($user_object->update_user_login_data()) {
+                    // 
+                }
             } else {
                 $error = 'Wrong Password';
             }
