@@ -192,4 +192,20 @@ class ChatUser
             return false;
         }
     }
+    function get_user_data_by_id()
+    {
+        $query = "SELECT * FROM chat_user_table WHERE user_id = :user_id";
+        $statement = $this->connect->prepare($query);
+        $statement->bindParam(':user_id', $this->user_id);
+        try {
+            if ($statement->execute()) {
+                $user_data = $statement->fetch(PDO::FETCH_ASSOC);
+            } else {
+                $user_data = array();
+            }
+        } catch (Exception $error) {
+            echo $error->getMessage();
+        }
+        return $user_data;
+    }
 }

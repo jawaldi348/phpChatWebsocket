@@ -3,6 +3,15 @@ session_start();
 if (!isset($_SESSION['user_data'])) {
     header('location:index.php');
 }
+
+require('database/ChatUser.php');
+$user_object = new ChatUser;
+$user_id = '';
+foreach ($_SESSION['user_data'] as $key => $value) {
+    $user_id = $value['id'];
+}
+$user_object->setUserId($user_id);
+$user_data = $user_object->get_user_data_by_id();
 ?>
 <!DOCTYPE html>
 <html>
