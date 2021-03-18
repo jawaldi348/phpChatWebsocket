@@ -51,7 +51,30 @@ $user_data = $user_object->get_user_data_by_id();
                 </div>
             </div>
             <div class="card-body">
-
+                <form method="post" id="profile_form" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label>Name</label>
+                        <input type="text" name="user_name" id="user_name" class="form-control" data-parsley-pattern="/^[a-zA-Z\s]+$/" required value="<?= $user_data['user_name'] ?>">
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" name="user_email" id="user_email" class="form-control" data-parsley-type="email" required readonly value="<?= $user_data['user_email'] ?>">
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" name="user_password" id="user_password" class="form-control" data-parsley-minlength="6" data-parsley-maxlength="12" data-parsley-pattern="^[a-zA-Z]+$" required value="<?= $user_data['user_password'] ?>">
+                    </div>
+                    <div class="form-group">
+                        <label>Profile</label><br />
+                        <input type="file" name="user_profile" id="user_profile" />
+                        <br />
+                        <img src="<?= $user_data['user_profile'] ?>" class="img-fluid img-thumbnail mt-3" width="100">
+                        <input type="hidden" name="hidden_user_profile" value="<?= $user_data['user_profile'] ?>">
+                    </div>
+                    <div class="form-group text-center">
+                        <input type="submit" name="edit" class="btn btn-primary" value="Edit">
+                    </div>
+                </form>
             </div>
         </div>
     </div>
