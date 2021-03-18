@@ -13,6 +13,7 @@ foreach ($_SESSION['user_data'] as $key => $value) {
 $user_object->setUserId($user_id);
 $user_data = $user_object->get_user_data_by_id();
 
+$message = '';
 if (isset($_POST['edit'])) {
     $user_profile = $_POST['hidden_user_profile'];
     if ($_FILES['user_profile']['name'] != '') {
@@ -25,7 +26,7 @@ if (isset($_POST['edit'])) {
     $user_object->setUserProfile($user_profile);
     $user_object->setUserId($user_id);
     if ($user_object->update_data()) {
-        // 
+        $message = '<div class="alert alert-success">Profile Details Updated</div>';
     }
 }
 ?>
@@ -57,6 +58,7 @@ if (isset($_POST['edit'])) {
         <h3 class="text-center">Profile</h3>
         <br />
         <br />
+        <?= $message ?>
         <div class="card">
             <div class="card-header">
                 <div class="row">
