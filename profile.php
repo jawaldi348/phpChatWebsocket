@@ -1,9 +1,3 @@
-<?php
-session_start();
-if (!isset($_SESSION['user_data'])) {
-    header('location:index.php');
-}
-?>
 <!DOCTYPE html>
 <html>
 
@@ -29,19 +23,20 @@ if (!isset($_SESSION['user_data'])) {
 <body>
     <div class="container">
         <br />
-        <h3 class="text-center">Welcome to Chatroom</h3>
+        <h3 class="text-center">Profile</h3>
         <br />
-        <div class="row">
-            <div class="col-lg-8"></div>
-            <div class="col-lg-4">
-                <?php
-                foreach ($_SESSION['user_data'] as $key => $value) { ?>
-                    <div class="mt-3 mb-3 text-center">
-                        <img src="<?= $value['profile'] ?>" width="150" class="img-fluid rounded-circle img-thumbnail">
-                        <h3 class="mt-2"><?= $value['name'] ?></h3>
-                        <a href="profile.php" class="btn btn-secondary mt-2 mb-2">Edit</a>
+        <br />
+        <div class="card">
+            <div class="card-header">
+                <div class="row">
+                    <div class="col-md-6">Profile</div>
+                    <div class="col-md-6 text-right">
+                        <a href="chatroom.php" class="btn btn-warning btn-sm">Go to Chat</a>
                     </div>
-                <?php } ?>
+                </div>
+            </div>
+            <div class="card-body">
+
             </div>
         </div>
     </div>
