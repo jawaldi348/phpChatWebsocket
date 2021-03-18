@@ -30,6 +30,20 @@ if (!isset($_SESSION['user_data'])) {
     <div class="container">
         <br />
         <h3 class="text-center">Welcome to Chatroom</h3>
+        <br />
+        <div class="row">
+            <div class="col-lg-8"></div>
+            <div class="col-lg-4">
+                <?php
+                foreach ($_SESSION['user_data'] as $key => $value) { ?>
+                    <div class="mt-3 mb-3 text-center">
+                        <img src="<?= $value['profile'] ?>" width="150" class="img-fluid rounded-circle img-thumbnail">
+                        <h3 class="mt-2"><?= $value['name'] ?></h3>
+                        <a href="profile.php" class="btn btn-secondary mt-2 mb-2">Edit</a>
+                    </div>
+                <?php } ?>
+            </div>
+        </div>
     </div>
 </body>
 
