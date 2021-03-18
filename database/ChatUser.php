@@ -208,4 +208,12 @@ class ChatUser
         }
         return $user_data;
     }
+    function upload_image($user_profile)
+    {
+        $extension = explode('.', $user_profile['name']);
+        $new_name = rand() . '.' . $extension[1];
+        $destination = 'images/' . $new_name;
+        move_uploaded_file($user_profile['tmp_name'], $destination);
+        return $destination;
+    }
 }
