@@ -35,11 +35,16 @@ if (!isset($_SESSION['user_data'])) {
             <div class="col-lg-8"></div>
             <div class="col-lg-4">
                 <?php
-                foreach ($_SESSION['user_data'] as $key => $value) { ?>
+                $login_user_id = '';
+                foreach ($_SESSION['user_data'] as $key => $value) {
+                    $login_user_id = $value['id'];
+                ?>
+                    <input type="hidden" name="login_user_id" id="login_user_id" value="<?= $login_user_id ?>">
                     <div class="mt-3 mb-3 text-center">
                         <img src="<?= $value['profile'] ?>" width="150" class="img-fluid rounded-circle img-thumbnail">
                         <h3 class="mt-2"><?= $value['name'] ?></h3>
                         <a href="profile.php" class="btn btn-secondary mt-2 mb-2">Edit</a>
+                        <input type="button" class="btn btn-primary mt-2 mb-2" name="logout" id="logout" value="Logout">
                     </div>
                 <?php } ?>
             </div>
