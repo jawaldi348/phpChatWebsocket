@@ -51,5 +51,26 @@ if (!isset($_SESSION['user_data'])) {
         </div>
     </div>
 </body>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#logout').click(function() {
+            user_id = $('#login_user_id').val();
+            $.ajax({
+                url: "action.php",
+                method: "POST",
+                data: {
+                    user_id: user_id,
+                    action: 'leave'
+                },
+                success: function(data) {
+                    var response = JSON.parse(data);
+                    if (response.status == 1) {
+                        location = 'index.php';
+                    }
+                }
+            })
+        });
+    });
+</script>
 
 </html>
